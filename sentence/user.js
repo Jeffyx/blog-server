@@ -16,7 +16,7 @@ module.exports = USER_MODIFY = data => {
   const sql = `UPDATE "user" 
         SET phone = $1, address = $2, head = $3, email = $4, nick = $5
         WHERE id = $6`;
-  return [sql, [data.phone, data.address, data.head, data.email, data.nick]];
+  return [sql, [data.phone, data.address, data.head, data.email, data.nick,data.id]];
 };
 // 修改密码 GET
 module.exports = MODIFY_PWD_GET = user_name => {
