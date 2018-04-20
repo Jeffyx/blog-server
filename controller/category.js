@@ -19,7 +19,7 @@ const setCategory = async (ctx, next) => {
 };
 // 获取分类
 const getCategory = async (ctx, next) => {
-  const result = await db.query(...GET_CATEGORY());
+  const result = await db.query(GET_CATEGORY());
   ctx.response.body = { code: 200, msg: "查询成功", data: result.rows };
 };
 

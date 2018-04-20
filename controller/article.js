@@ -17,8 +17,8 @@ const getArticle = async (ctx, next) => {
 };
 // 获取单个文章
 const oneArticle = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token); //验证Token
+  // const { token } = ctx.request.header;
+  // await detoken(token); //验证Token
   const { id } = ctx.request.query;
   if (!id) throw 1;
   const res = await db.query(...ONE_ARTICLE(id));

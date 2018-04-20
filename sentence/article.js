@@ -1,7 +1,7 @@
 const uuid = require("../utils/uuid");
 
 // GET
-module.exports = GET_ARTICLE = data => {
+const GET_ARTICLE = data => {
   let where = "";
   if (data.category_id) {
     where = `WHERE category_id = '${data.category_id} '`;
@@ -10,10 +10,8 @@ module.exports = GET_ARTICLE = data => {
   return [sql, [data.total, data.total * (data.page - 1)]];
 };
 // INSERT
-module.exports = INSERT_ARTICLE = data => {
-  const sql = `INSERT INTO "article" 
-    (id,title,article,category,category_id,creat_time,author)
-    VALUES($1,$2,$3,$4,$5,$6,$7)`;
+const INSERT_ARTICLE = data => {
+  const sql = `INSERT INTO "article" (id,title,article,category,category_id,creat_time,author) VALUES($1,$2,$3,$4,$5,$6,$7)`;
   return [
     sql,
     [
@@ -29,12 +27,12 @@ module.exports = INSERT_ARTICLE = data => {
 };
 
 // ONE
-module.exports = ONE_ARTICLE = id => {
-  const sql = `SELCET * FROM "article" WHERE id = $1`;
+const ONE_ARTICLE = id => {
+  const sql = `SELECT * FROM "article" WHERE id = $1`;
   return [sql, [id]];
 };
 // modify
-module.exports = MODIFY_ARTICLE = data => {
+const MODIFY_ARTICLE = data => {
   const sql = `UPDATE "article" 
     SET title = $1,article = $2,category = $3,category_id = $4,author = $5,modify_time = $6
     WHERE id = $7`;
@@ -53,7 +51,16 @@ module.exports = MODIFY_ARTICLE = data => {
 };
 
 // 删除一篇文章
-module.exports = DEL_ARTICLE = id => {
+const DEL_ARTICLE = id => {
   const sql = `DELETE FROM "article" WHERE id = $1`;
   return [sql, [id]];
 };
+
+
+module.exports = {
+  GET_ARTICLE,
+  INSERT_ARTICLE,
+  ONE_ARTICLE,
+  MODIFY_ARTICLE,
+  DEL_ARTICLE
+}

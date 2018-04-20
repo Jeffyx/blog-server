@@ -27,7 +27,10 @@ const login = async (ctx, next) => {
 const register = async (ctx, next) => {
   const { user_name, password } = ctx.request.body;
   if (!(user_name && password)) throw 1;
-  await db.query(...USER_REG({ user_name, password }));
+  const findUser = await db.query(...USER_LOGIN(user_name));
+  if (findUser.rowCount > 0) throw 5;
+  const pram = USER_REG({ user_name, password });
+  await db.query(...pram);
   ctx.response.body = { code: 200, msg: "注册成功" };
 };
 // 修改用户信息

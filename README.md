@@ -29,7 +29,9 @@ Postgresql
 
 { code: 204, msg: "用户名不存在" };
 
-{ code: 205, msg: "服务器出错" };
+{ code: 205, msg: "用户名已存在" };
+
+{ code: 500, msg: "服务器出错" };
 ```
 
 
@@ -64,11 +66,39 @@ Postgresql
     data:[
       {
         id:"用户id",
-        user_name:用户名,
-        
+        user_name:"用户名",
+        creat_time:"创建时间",
+        phone: "手机",
+        address: "地址",
+        head: "头像地址",
+        password: "密码",
+        email: "邮箱",
+        nick: "昵称",
+        lv: 3 "等级"
       }
     ]
   }
+
+  响应示例：
+  {
+    "code": 200,
+    "msg": "登录成功",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZm9vYmFyIiwiaWF0IjoxNTI0MjA1MzEzLCJleHAiOjE1MjQzMTMzMTN9.08-XLCB4Ic_bCvzNCvG8qDdZtLIOiW1DeozlQpf63Qs",
+    "data": [
+        {
+            "id": "fd0fd023-c739-4df1-a7a3-b8195d4c93ff",
+            "user_name": "jeffy",
+            "creat_time": "1524205287882",
+            "phone": null,
+            "address": null,
+            "head": null,
+            "password": "hellojsung",
+            "email": null,
+            "nick": null,
+            "lv": 3
+        }
+    ]
+}
 
   ```
 
@@ -183,6 +213,13 @@ Postgresql
         }
      ]
   }
+  
+响应示例：
+    {
+      "id": "761f74bf-df52-48f1-8ff1-e21090ca8043",
+      "category": "分享",
+      "alias": "share"
+    }
 
   ```
 
@@ -285,6 +322,35 @@ Postgresql
      ]
   }
 
+响应示例：
+
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
+            "title": "Hello World",
+            "article": "this is my one article",
+            "category": "分享",
+            "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
+            "creat_time": "1524208426134",
+            "modify_time": null,
+            "author": "jeffy"
+        },
+        {
+            "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
+            "title": "Hello World",
+            "article": "this is my one article",
+            "category": "分享",
+            "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
+            "creat_time": "1524208426134",
+            "modify_time": null,
+            "author": "jeffy"
+        }
+    ]
+}
+
   ```
 
 - 获取文章详情（一个文章）
@@ -315,6 +381,26 @@ Postgresql
        }
      ]
   }
+
+响应示例：
+
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
+            "title": "Hello World",
+            "article": "this is my one article",
+            "category": "分享",
+            "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
+            "creat_time": "1524208426134",
+            "modify_time": null,
+            "author": "jeffy"
+        }
+    ]
+}
+
   ```
 
 - 修改文章

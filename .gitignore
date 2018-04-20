@@ -1,3 +1,4 @@
 node_modules
 logs/error
 logs/response
+config/dbConfig.js
