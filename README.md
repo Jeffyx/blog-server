@@ -80,6 +80,7 @@ Postgresql
   }
 
   响应示例：
+
   {
     "code": 200,
     "msg": "登录成功",
@@ -97,11 +98,10 @@ Postgresql
             "nick": null,
             "lv": 3
         }
-    ]
-}
+      ]
+   }
 
-  ```
-
+ ```
 - 用户注册
 
   ```javascript
@@ -121,7 +121,6 @@ Postgresql
   }
   ```
 
-  ​
 
 - 修改用户信息
 
@@ -146,7 +145,6 @@ Postgresql
     msg："状态详情"
   }
   ```
-
 - 修改密码
 
   ```javascript
@@ -165,9 +163,9 @@ Postgresql
     code："状态码",
     msg："状态详情"
   }
+  
   ```
 
-  ​
 
 ###  分类 Category
 
@@ -264,7 +262,6 @@ Postgresql
   }
   ```
 
-  ​
 
 ### 文章 Article
 
@@ -322,35 +319,33 @@ Postgresql
      ]
   }
 
-响应示例：
-
-{
-    "code": 200,
-    "msg": "成功",
-    "data": [
-        {
-            "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
-            "title": "Hello World",
-            "article": "this is my one article",
-            "category": "分享",
-            "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
-            "creat_time": "1524208426134",
-            "modify_time": null,
-            "author": "jeffy"
-        },
-        {
-            "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
-            "title": "Hello World",
-            "article": "this is my one article",
-            "category": "分享",
-            "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
-            "creat_time": "1524208426134",
-            "modify_time": null,
-            "author": "jeffy"
-        }
-    ]
-}
-
+      响应示例：
+      {
+          "code": 200,
+          "msg": "成功",
+          "data": [
+              {
+                  "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
+                  "title": "Hello World",
+                  "article": "this is my one article",
+                  "category": "分享",
+                  "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
+                  "creat_time": "1524208426134",
+                  "modify_time": null,
+                  "author": "jeffy"
+              },
+              {
+                  "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
+                  "title": "Hello World",
+                  "article": "this is my one article",
+                  "category": "分享",
+                  "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
+                  "creat_time": "1524208426134",
+                  "modify_time": null,
+                  "author": "jeffy"
+              }
+          ]
+      }
   ```
 
 - 获取文章详情（一个文章）
@@ -380,26 +375,25 @@ Postgresql
          modify_time:"修改的时间，时间戳"
        }
      ]
-  }
+    }
 
-响应示例：
-
-{
-    "code": 200,
-    "msg": "成功",
-    "data": [
-        {
-            "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
-            "title": "Hello World",
-            "article": "this is my one article",
-            "category": "分享",
-            "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
-            "creat_time": "1524208426134",
-            "modify_time": null,
-            "author": "jeffy"
-        }
-    ]
-}
+      响应示例：
+      {
+          "code": 200,
+          "msg": "成功",
+          "data": [
+              {
+                  "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
+                  "title": "Hello World",
+                  "article": "this is my one article",
+                  "category": "分享",
+                  "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
+                  "creat_time": "1524208426134",
+                  "modify_time": null,
+                  "author": "jeffy"
+              }
+          ]
+      }
 
   ```
 
@@ -443,5 +437,3 @@ Postgresql
     msg："状态详情"
   }
   ```
-
-  ​
