@@ -1,7 +1,8 @@
 const router = require("koa-router")();
-const Category = require("../controller/category");
-const User = require("../controller/user");
 const ErrAndLog = require("../utils/ErrAndLog");
+const User = require("../controller/user");
+const Category = require("../controller/category");
+const Article = require("../controller/article")
 
 module.exports = app => {
   // 分类
@@ -15,10 +16,14 @@ module.exports = app => {
   router.put("/user", User.modify);
   router.post("/user/pwd", User.modifyPwd);
 
-  router.post("/test", async (ctx, next) => {
-    console.log("next", 1);
-    ctx.response.body = { code: 200 };
-  });
+  // 文章
+  router.get("/article/list",Article.getArticle)
+  router.get("/article",Article.oneArticle)
+  router.post("/article",Article.insertArticle)
+  router.put("/article",Article.modifyArticle)
+  router.del("/article",Article.delArticle)
+  
+  
   
   // 中间件
   app
