@@ -5,6 +5,9 @@ const Category = require("../controller/category");
 const Article = require("../controller/article")
 
 module.exports = app => {
+  router.get("/",async (ctx,next)=>{
+    ctx.response.body = "<p>Hello,ya</p>"
+  })
   // 分类
   router.post("/category", Category.setCategory);
   router.get("/category", Category.getCategory);
@@ -22,8 +25,6 @@ module.exports = app => {
   router.post("/article",Article.insertArticle)
   router.put("/article",Article.modifyArticle)
   router.del("/article",Article.delArticle)
-  
-  
   
   // 中间件
   app

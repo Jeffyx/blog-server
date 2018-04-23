@@ -2,7 +2,7 @@ const uuid = require("../utils/uuid");
 
 // 添加分类
 const SET_CATEGORY = data => {
-  const sql = `INSERT INTO category (id,category,alias) VALUES ($1,$2,$3)`;
+  const sql = `INSERT INTO "category" (id,category,alias) VALUES ($1,$2,$3)`;
   return [sql, [uuid.v4(), data.name, data.alias]];
 };
 // 获取分类

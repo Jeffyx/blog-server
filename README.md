@@ -12,8 +12,6 @@ NodeJS v8.0+
 Postgresql
 ```
 
-
-
 # 接口文档
 
 ###	 状态码参照
@@ -100,8 +98,9 @@ Postgresql
         }
       ]
    }
+  ```
 
- ```
+
 - 用户注册
 
   ```javascript
@@ -120,6 +119,7 @@ Postgresql
     msg："状态详情"
   }
   ```
+
 
 
 - 修改用户信息
