@@ -17,6 +17,8 @@ const getComment = async (ctx, next) => {
 };
 
 const setComment = async (ctx, next) => {
+  const { token } = ctx.request.header;
+  await detoken(token); //验证Token
   const keys = "article_id,user_id,comment".split(",");
   for (const iterator of keys) {
     if (!iterator) throw 1;
@@ -39,6 +41,8 @@ const setComment = async (ctx, next) => {
 };
 
 const delComment = async (ctx, next) => {
+  const { token } = ctx.request.header;
+  await detoken(token); //验证Token
   const { id } = ctx.request.body;
   if (!id) throw 1;
   await db.query(...DEL_COMMENT(id));

@@ -432,6 +432,7 @@ Postgresql
   说明：修改文章
 
   请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
   {
     id*:"文章id",
     title:"标题",
@@ -454,6 +455,7 @@ Postgresql
   说明：获取文章详情
 
   请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
   {
     id*:"文章的id"
   }
@@ -463,3 +465,95 @@ Postgresql
     msg："状态详情"
   }
   ```
+
+### 评论 comment
+
+- 获取评论内容
+
+  ```javascript
+  地址："/comment"
+  类型: get
+  说明：获取评论内容
+
+  请求参数：
+  {
+    article_id*:"当前文章的id"
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情"
+    data: [
+        {
+           id:'comment id',
+           comment:'评论内容',
+           article_id:'文章id',
+           parent_id:'回复评论的id，为空则代表一级评论，parent_id对应回复的评论id'，
+           user_name:'当前评论的用户名',
+           create_time:'评论创建的时间',
+           client:'评论时使用的客户端',
+           address:'评论的ip地址'
+         }
+    ]
+  }
+  响应示例：
+  {
+      code:200,
+      msg:'ok',
+      data:[
+              {
+                id:'aklshdhaui79798',
+                comment:'hahahaha',
+                article_id:'097ajksddhkjahj',
+                parent_id:'8a7a67dskjhsaldk'，
+                user_name:'jeffy',
+                create_time:'2018-01-01',
+                client:'Chrome',
+                address:'127.0.0.1'
+             }
+          ]
+  }
+  ```
+
+- 添加一条评论
+
+  ```javascript
+  地址："/comment"
+  类型: post
+  说明：获取评论内容
+
+  请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
+  {
+    article_id*:"当前文章的id",
+    user_id*:'当前评论用户的用户id',
+    comment*:'评论内容',
+    parent_id:'为空则为一级评论，如果有认为是回复，parent_id是回复的评论id'
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情"
+  }
+  ```
+
+- 删除一条评论
+
+  ```javascript
+  地址："/comment"
+  类型: delete
+  说明：获取评论内容
+
+  请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
+  {
+    id*:'当前评论的id'
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情"
+  }
+  ```
+
+  ​
