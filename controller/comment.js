@@ -1,4 +1,3 @@
-import Axios from "axios";
 
 const db = require("../db");
 const detoken = require("../utils/detoken");
