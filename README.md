@@ -65,7 +65,7 @@ Postgresql
       {
         id:"用户id",
         user_name:"用户名",
-        creat_time:"创建时间",
+        create_time:"创建时间",
         phone: "手机",
         address: "地址",
         head: "头像地址",
@@ -87,7 +87,7 @@ Postgresql
         {
             "id": "fd0fd023-c739-4df1-a7a3-b8195d4c93ff",
             "user_name": "jeffy",
-            "creat_time": "1524205287882",
+            "create_time": "1524205287882",
             "phone": null,
             "address": null,
             "head": null,
@@ -277,7 +277,6 @@ Postgresql
   {
     title*:"文章标题",
     article*:"文章内容",
-    category*:"分类名称",
     category_id*:"分类id",
     author*:"作者，用户名"
   }
@@ -313,7 +312,7 @@ Postgresql
          category:"分类名",
          categoty_id:"分类id",
          author:"作者",
-         creat_time:"创建的时间，时间戳",
+         create_time:"创建的时间，时间戳",
          modify_time:"修改的时间，时间戳"
        }
      ]
@@ -330,7 +329,7 @@ Postgresql
                   "article": "this is my one article",
                   "category": "分享",
                   "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
-                  "creat_time": "1524208426134",
+                  "create_time": "1524208426134",
                   "modify_time": null,
                   "author": "jeffy"
               },
@@ -340,7 +339,7 @@ Postgresql
                   "article": "this is my one article",
                   "category": "分享",
                   "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
-                  "creat_time": "1524208426134",
+                  "create_time": "1524208426134",
                   "modify_time": null,
                   "author": "jeffy"
               }
@@ -363,36 +362,64 @@ Postgresql
   {
     code："状态码",
     msg："状态详情",
-    data:[
-       {
-     	   id:"文章id",
-         title:"标题",
-         article:"文章内容",
-         category:"分类名",
-         categoty_id:"分类id",
-         author:"作者",
-         creat_time:"创建的时间，时间戳",
-         modify_time:"修改的时间，时间戳"
-       }
-     ]
+    data:{
+       article:[ //文章详情
+          {
+          id:"文章id",
+          title:"标题",
+          article:"文章内容",
+          category:"分类名",
+          categoty_id:"分类id",
+          author:"作者",
+          create_time:"创建的时间，时间戳",
+          modify_time:"修改的时间，时间戳"
+        }
+       ],
+       comment:[ //该文章下的所有评论
+         {
+           id:'comment id',
+           comment:'评论内容',
+           article_id:'文章id',
+           parent_id:'回复评论的id，为空则代表一级评论，parent_id对应回复的评论id'，
+           user_name:'当前评论的用户名',
+           create_time:'评论创建的时间',
+           client:'评论时使用的客户端',
+           address:'评论的ip地址'
+         }
+       ]
+     }
     }
 
       响应示例：
       {
           "code": 200,
           "msg": "成功",
-          "data": [
+          "data": {
+            article:[
               {
                   "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
                   "title": "Hello World",
                   "article": "this is my one article",
                   "category": "分享",
                   "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
-                  "creat_time": "1524208426134",
+                  "create_time": "1524208426134",
                   "modify_time": null,
                   "author": "jeffy"
               }
-          ]
+            ],
+          comment:[
+                {
+                id:'aklshdhaui79798',
+                comment:'hahahaha',
+                article_id:'097ajksddhkjahj',
+                parent_id:'8a7a67dskjhsaldk'，
+                user_name:'jeffy',
+                create_time:'2018-01-01',
+                client:'Chrome',
+                address:'127.0.0.1'
+              }
+            ]
+          }
       }
 
   ```
@@ -409,7 +436,6 @@ Postgresql
     id*:"文章id",
     title:"标题",
     article:"文章内容",
-    category:"分类名称",
     category_id:"分类id",
     author:"作者"
   }

@@ -12,12 +12,11 @@ const GET_CATEGORY = () => {
 
 // 删除分类
 const DEL_CATEGORY = id => {
-  const delcg = `DELETE FROM "category" WHERE id = $1`;
-  const delat = `DELETE FROM "article" WHERE category_id = $1`;
-  return {
-    CG: [delcg, [id]],
-    AT: [delat, [id]]
-  };
+  const sql = `BEGIN;
+  DELETE FROM "category" WHERE id = $1;
+  DELETE FROM "article" WHERE category_id = $2';
+  COMMIT;`;
+  return [sql,[id,id]]
 };
 // 修改分类名
 const PUT_CATEGORY = data => {

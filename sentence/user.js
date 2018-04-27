@@ -1,4 +1,5 @@
 const uuid = require("../utils/uuid");
+const format = require("../utils/format")
 
 // 用户登录
 const USER_LOGIN = name => {
@@ -8,8 +9,8 @@ const USER_LOGIN = name => {
 
 // 用户注册
 const USER_REG = data => {
-  const sql = `INSERT INTO "user" ("id",user_name,password,creat_time,lv) VALUES ($1,$2,$3,$4,$5)`;
-  return [sql, [uuid.v4(), data.user_name, data.password, Date.now(), 3]];
+  const sql = `INSERT INTO "user" ("id",user_name,password,create_time,lv) VALUES ($1,$2,$3,$4,$5)`;
+  return [sql, [uuid.v4(), data.user_name, data.password, format('yyyy-MM-dd'), 3]];
 };
 // 修改信息
 const USER_MODIFY = data => {

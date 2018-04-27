@@ -2,12 +2,13 @@ const router = require("koa-router")();
 const ErrAndLog = require("../utils/ErrAndLog");
 const User = require("../controller/user");
 const Category = require("../controller/category");
-const Article = require("../controller/article")
+const Article = require("../controller/article");
+const Comment = require("../controller/comment");
 
 module.exports = app => {
-  router.get("/",async (ctx,next)=>{
-    ctx.response.body = "<p>Hello,ya</p>"
-  })
+  router.get("/", async (ctx, next) => {
+    ctx.response.body = "<p>Hello,ya</p>";
+  });
   // 分类
   router.post("/category", Category.setCategory);
   router.get("/category", Category.getCategory);
@@ -20,12 +21,16 @@ module.exports = app => {
   router.post("/user/pwd", User.modifyPwd);
 
   // 文章
-  router.get("/article/list",Article.getArticle)
-  router.get("/article",Article.oneArticle)
-  router.post("/article",Article.insertArticle)
-  router.put("/article",Article.modifyArticle)
-  router.del("/article",Article.delArticle)
-  
+  router.get("/article/list", Article.getArticle);
+  router.get("/article", Article.oneArticle);
+  router.post("/article", Article.insertArticle);
+  router.put("/article", Article.modifyArticle);
+  router.del("/article", Article.delArticle);
+  // 评论
+  router.get("/comment", Comment.getComment);
+  router.post("/comment", Comment.setComment);
+  router.del("/comment", Comment.delComment);
+
   // 中间件
   app
     .use(ErrAndLog) //处理日志和错误返回

@@ -1,5 +1,6 @@
 const db = require("../db");
 const detoken = require("../utils/detoken");
+const { GET_COMMENT } = require("../sentence/comment");
 const {
   GET_ARTICLE,
   INSERT_ARTICLE,
@@ -17,19 +18,24 @@ const getArticle = async (ctx, next) => {
 };
 // 获取单个文章
 const oneArticle = async (ctx, next) => {
-  // const { token } = ctx.request.header;
-  // await detoken(token); //验证Token
   const { id } = ctx.request.query;
   if (!id) throw 1;
-  const res = await db.query(...ONE_ARTICLE(id));
-  ctx.response.body = { code: 200, msg: "成功", data: res.rows };
+  const [article, comment] = await Promise.all([
+    db.query(...ONE_ARTICLE(id)),
+    db.query(...GET_COMMENT(id))
+  ]);
+  ctx.response.body = {
+    code: 200,
+    msg: "成功",
+    data: { article: article.rows, comment: comment.rows }
+  };
 };
 // 写入文章
 const insertArticle = async (ctx, next) => {
   const { token } = ctx.request.header;
   await detoken(token); //验证Token
   const info = ctx.request.body;
-  const key = "title,article,category,category_id,author".split(",");
+  const key = "title,article,category_id,author".split(",");
   for (const v of key) {
     if (!info[v]) throw 1;
   }
@@ -41,7 +47,7 @@ const modifyArticle = async (ctx, next) => {
   const { token } = ctx.request.header;
   await detoken(token); //验证Token
   const info = ctx.request.body;
-  const key = "id,title,article,category,category_id,author".split(",");
+  const key = "id,title,article,category_id,author".split(",");
   for (const v of key) {
     if (!info[v]) throw 1;
   }
