@@ -30,7 +30,7 @@ const delCategory = async (ctx, next) => {
   const { id } = ctx.request.body;
   if (!id) throw 1;
   const PARM = DEL_CATEGORY(id);
-  await db.query(...PARM);
+  const res = await db.transactions(...PARM);
   ctx.response.body = { code: 200, msg: "删除成功" };  
 };
 // 修改分类名

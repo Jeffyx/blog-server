@@ -1,4 +1,3 @@
-
 const db = require("../db");
 const detoken = require("../utils/detoken");
 const getClint = require("../utils/getClint");
