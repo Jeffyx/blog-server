@@ -1,6 +1,4 @@
 const db = require("../db");
-const detoken = require("../utils/detoken");
-const uuid = require("../utils/uuid");
 const {
   SET_CATEGORY,
   GET_CATEGORY,
@@ -10,8 +8,6 @@ const {
 
 // 添加分类
 const setCategory = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token);
   const { name, alias } = ctx.request.body;
   if (!(name && alias)) throw 1;
   await db.query(...SET_CATEGORY({ name, alias }));
@@ -25,8 +21,6 @@ const getCategory = async (ctx, next) => {
 
 // 删除分类
 const delCategory = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token);
   const { id } = ctx.request.body;
   if (!id) throw 1;
   const PARM = DEL_CATEGORY(id);
@@ -35,8 +29,6 @@ const delCategory = async (ctx, next) => {
 };
 // 修改分类名
 const putCategory = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token);
   const { id, name, alias } = ctx.request.body;
   if (!(id && name && alias)) throw 1;
   await db.query(...PUT_CATEGORY({ id, name, alias }));

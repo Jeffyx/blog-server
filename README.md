@@ -69,7 +69,6 @@ Postgresql
         phone: "手机",
         address: "地址",
         head: "头像地址",
-        password: "密码",
         email: "邮箱",
         nick: "昵称",
         lv: 3 "等级"
@@ -91,7 +90,6 @@ Postgresql
             "phone": null,
             "address": null,
             "head": null,
-            "password": "hellojsung",
             "email": null,
             "nick": null,
             "lv": 3
@@ -116,7 +114,21 @@ Postgresql
   响应参数
   {
     code："状态码",
-    msg："状态详情"
+    msg："状态详情",
+    token:"登录身份令牌，需要存起来后面有些借口需要验证token的有效性",
+    data:[
+      {
+        id:"用户id",
+        user_name:"用户名",
+        create_time:"创建时间",
+        phone: "手机",
+        address: "地址",
+        head: "头像地址",
+        email: "邮箱",
+        nick: "昵称",
+        lv: 3 "等级"
+      }
+    ]
   }
   ```
 
@@ -166,6 +178,29 @@ Postgresql
   
   ```
 
+
+### 用户信息
+
+- 获取用户信息
+
+  ````javascript
+  地址："/getinfo"
+  类型: post
+  说明：单独获取用户信息
+
+  请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
+  {
+    user_name*:"用户名"
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情"
+  }
+  ````
+
+  ​
 
 ###  分类 Category
 
@@ -278,7 +313,8 @@ Postgresql
     title*:"文章标题",
     article*:"文章内容",
     category_id*:"分类id",
-    author*:"作者，用户名"
+    author*:"作者，用户名",
+    abstract*:"摘要"
   }
   响应参数：
   {
@@ -308,12 +344,13 @@ Postgresql
        {
      	   id:"文章id",
          title:"标题",
-         article:"文章内容",
+         abstract:"摘要内容",
          category:"分类名",
          categoty_id:"分类id",
          author:"作者",
-         create_time:"创建的时间，时间戳",
-         modify_time:"修改的时间，时间戳"
+         create_time:"创建的时间",
+         modify_time:"修改的时间"，
+         m_count:'评论总数字'
        }
      ]
   }
@@ -326,22 +363,24 @@ Postgresql
               {
                   "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
                   "title": "Hello World",
-                  "article": "this is my one article",
+                  "abstract": "this is my one article",
                   "category": "分享",
                   "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
                   "create_time": "1524208426134",
                   "modify_time": null,
-                  "author": "jeffy"
+                  "author": "jeffy",
+                  "m_count" 0
               },
               {
                   "id": "2189a619-1b09-4f9d-b521-19465a8d3c84",
                   "title": "Hello World",
-                  "article": "this is my one article",
+                  "abstract": "this is my one article",
                   "category": "分享",
                   "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
                   "create_time": "1524208426134",
                   "modify_time": null,
-                  "author": "jeffy"
+                  "author": "jeffy",
+                  "m_count": 1
               }
           ]
       }
@@ -368,6 +407,7 @@ Postgresql
           id:"文章id",
           title:"标题",
           article:"文章内容",
+          abstract:"摘要内容"
           category:"分类名",
           categoty_id:"分类id",
           author:"作者",
@@ -404,7 +444,8 @@ Postgresql
                   "category_id": "13d16d0c-f71d-4257-95e7-55e8864b99ba",
                   "create_time": "1524208426134",
                   "modify_time": null,
-                  "author": "jeffy"
+                  "author": "jeffy"，
+                  "abstract":"akjaghsd"
               }
             ],
           comment:[
@@ -438,7 +479,8 @@ Postgresql
     title:"标题",
     article:"文章内容",
     category_id:"分类id",
-    author:"作者"
+    author:"作者",
+    abstract:"摘要"
   }
   响应参数：
   {

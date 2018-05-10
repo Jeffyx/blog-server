@@ -13,4 +13,5 @@ module.exports = agent => {
   for (const iterator of Agents) {
     if (agent.includes(iterator)) return iterator;
   }
+  return 'Other'
 };

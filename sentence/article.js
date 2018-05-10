@@ -6,7 +6,7 @@ const GET_ARTICLE = data => {
   if (data.category_id) {
     where = `WHERE a.category_id = '${data.category_id} '`;
   }
-  const sql = `SELECT a.id,a.title,a.article,a.category_id,c.category AS category,a.create_time,a.modify_time,a.author 
+  const sql = `SELECT a.id,a.title,a.abstract,a.category_id,c.category AS category,a.create_time,a.modify_time,a.author,(SELECT count(*) FROM "comment" WHERE article_id = a.id) AS m_count 
   FROM article a
   LEFT JOIN category c ON a.category_id = c.id
   ${where}LIMIT $1 OFFSET $2`;
@@ -14,7 +14,7 @@ const GET_ARTICLE = data => {
 };
 // INSERT
 const INSERT_ARTICLE = data => {
-  const sql = `INSERT INTO "article" (id,title,article,category_id,create_time,author) VALUES($1,$2,$3,$4,$5,$6)`;
+  const sql = `INSERT INTO "article" (id,title,article,category_id,create_time,author,abstract) VALUES($1,$2,$3,$4,$5,$6,$7)`;
   return [
     sql,
     [
@@ -23,14 +23,15 @@ const INSERT_ARTICLE = data => {
       data.article,
       data.category_id,
       format('yyyy-MM-dd hh:mm:ss'),
-      data.author
+      data.author,
+      data.abstract
     ]
   ];
 };
 
 // ONE
 const ONE_ARTICLE = id => {
-  const sql = `SELECT a.id,a.title,a.article,a.category_id,c.category AS category,a.create_time,a.modify_time,a.author 
+  const sql = `SELECT a.id,a.title,a.article,a.abstract,a.category_id,c.category AS category,a.create_time,a.modify_time,a.author 
   FROM article a,category c
   WHERE a.category_id = c.id AND a.id = $1`;
   return [sql, [id]];
@@ -38,8 +39,8 @@ const ONE_ARTICLE = id => {
 // modify
 const MODIFY_ARTICLE = data => {
   const sql = `UPDATE "article" 
-    SET title = $1,article = $2,category_id = $3,author = $4,modify_time = $5
-    WHERE id = $6`;
+    SET title = $1,article = $2,category_id = $3,author = $4,modify_time = $5,abstract = $6
+    WHERE id = $7`;
   return [
     sql,
     [
@@ -48,6 +49,7 @@ const MODIFY_ARTICLE = data => {
       data.category_id,
       data.author,
       format('yyyy-MM-dd hh:mm:ss'),
+      data.abstract,
       data.id
     ]
   ];

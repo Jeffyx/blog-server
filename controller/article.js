@@ -1,5 +1,4 @@
 const db = require("../db");
-const detoken = require("../utils/detoken");
 const { GET_COMMENT } = require("../sentence/comment");
 const {
   GET_ARTICLE,
@@ -32,10 +31,8 @@ const oneArticle = async (ctx, next) => {
 };
 // 写入文章
 const insertArticle = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token); //验证Token
   const info = ctx.request.body;
-  const key = "title,article,category_id,author".split(",");
+  const key = "title,article,category_id,author,abstract".split(",");
   for (const v of key) {
     if (!info[v]) throw 1;
   }
@@ -44,10 +41,8 @@ const insertArticle = async (ctx, next) => {
 };
 // 修改文章
 const modifyArticle = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token); //验证Token
   const info = ctx.request.body;
-  const key = "id,title,article,category_id,author".split(",");
+  const key = "id,title,article,category_id,author,abstract".split(",");
   for (const v of key) {
     if (!info[v]) throw 1;
   }
@@ -56,8 +51,6 @@ const modifyArticle = async (ctx, next) => {
 };
 // 删除一个文章
 const delArticle = async (ctx, next) => {
-  const { token } = ctx.request.header;
-  await detoken(token); //验证Token
   const { id } = ctx.request.body;
   if (!id) throw 1;
   await db.query(...DEL_ARTICLE(id));

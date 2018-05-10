@@ -2,10 +2,11 @@ const uuid = require("../utils/uuid");
 const format = require("../utils/format")
 
 // 用户登录
-const USER_LOGIN = name => {
-  const sql = `SELECT * FROM "user" WHERE user_name = $1`;
+const GET_INFO = name => {
+  const sql = `SELECT id,user_name,password,create_time,phone,address,head,email,nick,lv FROM "user" WHERE user_name = $1`;
   return [sql, [name]];
 };
+
 
 // 用户注册
 const USER_REG = data => {
@@ -32,7 +33,7 @@ const MODIFY_PWD_UPDATE = data => {
 // 
 
 module.exports = {
-  USER_LOGIN,
+  GET_INFO,
   USER_REG,
   USER_MODIFY,
   MODIFY_PWD_GET,
