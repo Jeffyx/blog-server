@@ -5,5 +5,5 @@ const config = {
   password: "hellojsung",
   port: 5432
 };
-
+// 数据库连接配置
 module.exports = config;

@@ -1,7 +1,7 @@
 const uuid = require("../utils/uuid");
 const format = require("../utils/format")
 
-// 用户登录
+// get user info sql
 const GET_INFO = name => {
   const sql = `SELECT id,user_name,password,create_time,phone,address,head,email,nick,lv FROM "user" WHERE user_name = $1`;
   return [sql, [name]];

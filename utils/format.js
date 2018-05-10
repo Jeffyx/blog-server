@@ -24,7 +24,7 @@ Date.prototype.format = function(fmt) {
   }
   return fmt;
 };
-
+//格式化日期
 module.exports = fmt => {
   const time = new Date().format(fmt);
   return time;

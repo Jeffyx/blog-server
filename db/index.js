@@ -3,7 +3,7 @@ const config = require("../config/dbConfig");
 
 const pool = new Pool(config);
 
-// 事物
+// 事物 transactions
 const transactions = (text, param) => {
   return new Promise((resolve, reject) => {
     (async () => {

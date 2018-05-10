@@ -1,18 +1,18 @@
 const router = require("koa-router")();
-const ErrAndLog = require("../utils/ErrAndLog");
-const Detoken = require("../utils/detoken");
-const v1_api = require("./v1/index");
+const Errlog = require("../utils/Errlog");
+const Detoken = require("../utils/Detoken");
+const API_V1 = require("./v1/index");
 
 // v1版本API
-router.use("/v1", v1_api.routes(), v1_api.allowedMethods());
+router.use("/v1", API_V1.routes(), API_V1.allowedMethods());
 
 
 
 module.exports = app => {
     // 中间件
     app
-        .use(ErrAndLog) //处理日志和错误返回
-        .use(Detoken)
+        .use(Errlog) //处理日志和错误返回
+        .use(Detoken) //验证token
         .use(router.routes()) //koa-router中间件
         .use(router.allowedMethods());
 };

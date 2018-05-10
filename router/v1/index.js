@@ -5,26 +5,26 @@ const Comment = require("../../controller/comment");
 const Category = require("../../controller/category");
 
 const routers = router
-    // article
-    .get("/article/list", Article.getArticle)
-    .get("/article", Article.oneArticle)
-    .post("/article", Article.insertArticle)
-    .put("/article", Article.modifyArticle)
-    .del("/article", Article.delArticle)
-    // category
-    .post("/category", Category.setCategory)
-    .get("/category", Category.getCategory)
-    .put("/category", Category.putCategory)
-    .del("/category", Category.delCategory)
-    //comment
-    .get("/comment", Comment.getComment)
-    .post("/comment", Comment.setComment)
-    .del("/comment", Comment.delComment)
-    //user
-    .post("/user/login", User.login)
-    .post("/user", User.register)
-    .put("/user", User.modify)
-    .post("/user/pwd", User.modifyPwd)
-    .post("/getinfo", User.getOneUserInfo);
+    // article api
+    .get("/article/list", Article.getArticle) //get article list
+    .get("/article", Article.oneArticle) //article details
+    .post("/article", Article.insertArticle) //insert article
+    .put("/article", Article.modifyArticle) // modify article
+    .del("/article", Article.delArticle) //delete article
+    // category api
+    .post("/category", Category.setCategory) //add category
+    .get("/category", Category.getCategory) // get category list
+    .put("/category", Category.putCategory) //modify category
+    .del("/category", Category.delCategory) //delete category
+    //comment api
+    .get("/comment", Comment.getComment) //get comment list
+    .post("/comment", Comment.setComment) //add comment
+    .del("/comment", Comment.delComment) //delete comment
+    //user api
+    .post("/user/login", User.login) //user login api
+    .post("/user", User.register) //user register
+    .put("/user", User.modify) //modify user info
+    .post("/user/pwd", User.modifyPwd) //modify user password
+    .post("/getinfo", User.getOneUserInfo); //get user info
 
 module.exports = routers;

@@ -3,6 +3,7 @@ const v4 = require("uuid/v4");
 // const v5 = require("uuid/v5");
 // const v1 = require("uuid/v1");
 
+// 自动生成36位id
 module.exports = {
   v4,
   // v1,
