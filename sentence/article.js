@@ -4,12 +4,12 @@ const format = require("../utils/format");
 const GET_ARTICLE = data => {
     let where = "";
     if (data.category_id) {
-        where = `WHERE a.category_id = $3`;
+        where = `WHERE a.category_id = "${data.category_id}"`;
     }
     // select article table
     const sql = `SELECT a.id,a.title,a.abstract,a.category_id,c.category AS category,a.create_time,a.modify_time,a.author,(SELECT count(*) FROM "comment" WHERE article_id = a.id) AS m_count FROM article a LEFT JOIN category c ON a.category_id = c.id ${where} LIMIT $1 OFFSET $2`;
 
-    return [sql, [data.total, data.total * (data.page - 1), data.category_id]];
+    return [sql, [data.total, data.total * (data.page - 1)]];
 };
 // INSERT article sql
 const INSERT_ARTICLE = data => {
