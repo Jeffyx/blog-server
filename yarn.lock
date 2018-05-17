@@ -251,6 +251,10 @@ cryptiles@3.x.x:
   dependencies:
     boom "5.x.x"
 
+cssfilter@0.0.10:
+  version "0.0.10"
+  resolved "http://registry.npm.taobao.org/cssfilter/download/cssfilter-0.0.10.tgz#c6d2672632a2e5c83e013e6864a42ce8defd20ae"
+
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "http://registry.npm.taobao.org/dashdash/download/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -1550,6 +1554,13 @@ wordwrap@~1.0.0:
 xregexp@2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/xregexp/download/xregexp-2.0.0.tgz#52a63e56ca0b84a7f3a5f3d61872f126ad7a5943"
+
+xss@^0.3.8:
+  version "0.3.8"
+  resolved "http://registry.npm.taobao.org/xss/download/xss-0.3.8.tgz#d0cbe23bde490bc98c139f08de3899165a68af0e"
+  dependencies:
+    commander "^2.9.0"
+    cssfilter "0.0.10"
 
 xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.1"

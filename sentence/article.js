@@ -4,7 +4,7 @@ const format = require("../utils/format");
 const GET_ARTICLE = data => {
     let where = "";
     if (data.category_id) {
-        where = `WHERE a.category_id = "${data.category_id}"`;
+        where = `WHERE a.category_id = '${data.category_id}'`;
     }
     // select article table
     const sql = `SELECT a.id,a.title,a.abstract,a.category_id,c.category AS category,a.create_time,a.modify_time,a.author,(SELECT count(*) FROM "comment" WHERE article_id = a.id) AS m_count FROM article a LEFT JOIN category c ON a.category_id = c.id ${where} LIMIT $1 OFFSET $2`;
@@ -19,7 +19,7 @@ const INSERT_ARTICLE = data => {
         [
             uuid.v4(), //id
             data.title,
-            data.article,
+            encodeURIComponent(data.article),
             data.category_id,
             format("yyyy-MM-dd hh:mm:ss"), //date
             data.author,
