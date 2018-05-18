@@ -1,15 +1,78 @@
-# 安装
-```javascript
-npm i
-npm run dev
-
-```
-
 # 运行环境
 
-```
+```javascript
 NodeJS v8.0+
-Postgresql
+npm & cnpm & yarn
+Postgresql 9.5+
+Pm2 //生产环境守护进程
+Nginx & Apache //生产环境代理请求
+```
+
+# 启动脚本
+```javascript
+
+npm i //安装依赖
+npm run init_db //初始化数据库表
+npm run dev //启动项目
+// 'http://localhost:3000'
+```
+
+# Nginx 配置
+```javascript
+
+// $ vim /etc/nginx/nginx.conf
+
+/*
+  http {
+    server {
+      listen 80;
+      server_name yourdomin.com;
+      location / {
+        proxy_pass http:127.0.0.1:3000;
+      }
+    }
+    //https
+    server {
+      listen 443;
+      server_name yourdomin.com;
+      ssl on;
+      ssl_certificate fullchain.cer; //ssl证书fullchain.cer的路径
+      ssl_certificate_key yourdomin.key; //key的路径
+      location / {
+        proxy_pass http://127.0.0.1:3000;
+      }
+    }
+  }
+*/
+
+```
+# 目录结构
+
+```javascript
+/*
+  config
+  --dbConfig.js  //数据连接配置
+  --logConfig  //log记录配置
+  --responseCode //自定义的错误代码
+  contoroller //代码逻辑在这里
+  --article.js //.....
+  db //数据库方法封装
+  --index.js
+  --init //初始化数据库表
+  ----index.js
+  ----dbCreate.js //创建表语句
+  logs //log目录
+  --error
+  --response
+  router //路由目录
+  --index.js
+  --v1 //api版本
+  sentence //分离sql语句目录
+  --article.js //....
+  utils  //功能函数方法目录
+  app.js  //入口文件
+  .vscode  //vscode本地调试配置
+*/
 ```
 
 # 接口文档

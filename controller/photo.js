@@ -26,7 +26,7 @@ const deletePhoto = async (ctx,next)=>{
     ctx.body = {code:200,msg:'ok'}
 }
 
-export default {
+module.exports = {
     insertPhoto,
     findPhoto,
     deletePhoto

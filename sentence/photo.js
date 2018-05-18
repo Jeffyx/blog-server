@@ -33,7 +33,7 @@ const DEL_PHOTO = id =>{
     return [sql,[id]]
 }
 
-export default {
+module.exports = {
     INSERT_PHOTO,
     FIND_PHOTOLIST,
     DEL_PHOTO

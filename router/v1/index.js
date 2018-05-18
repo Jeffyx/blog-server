@@ -3,7 +3,7 @@ const Article = require("../../controller/article");
 const User = require("../../controller/user");
 const Comment = require("../../controller/comment");
 const Category = require("../../controller/category");
-const Photo = Request("../../controller/photo");
+const Photo = require("../../controller/photo");
 
 const routers = router
     // article api

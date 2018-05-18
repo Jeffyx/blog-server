@@ -103,7 +103,7 @@ COMMENT ON COLUMN "photo"."create_time" IS E'';
 `;
 
 
-export default {
+module.exports = {
     ARTICLE,
     CATEGORY,
     COMMENT,
