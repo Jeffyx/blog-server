@@ -681,48 +681,48 @@ npm run dev //启动项目
   }
   ```
 - 获取相册列表&详情&用户分下的列表
- ```javascript
- 地址：'/photo'
-  类型：get
-  说明：id和user_id都为空获取全部相册，只传id获取相册详情，只传user_id获取该用户的相册
-
-  请求参数：
-  token:"用户登录时的token，需要放在请求头haeder中传递"
-  {
-    id:'相册id',
-    user_id:'用户id'
-  }
-  响应参数：
-  {
-    code："状态码",
-    msg："状态详情",
-    data:[
-      {
-        id:'相册id',
-        src:'照片地址列表',
-        remark:'备注',
-        title:'标题',
-        user_id:'用户id',
-        create_time:'创建时间',
-        author:'作者名'
-      }
-    ]
-  }
- ```
- - 删除相册
- ```javascript
+  ```javascript
   地址：'/photo'
-  类型：delete
-  说明：
-
-  请求参数：
-  token:"用户登录时的token，需要放在请求头haeder中传递"
-  {
-    id:'相册id',
-  }
-  响应参数：
-  {
-    code："状态码",
-    msg："状态详情",
-  }
- ```
+   类型：get
+   说明：id和user_id都为空获取全部相册，只传id获取相册详情，只传user_id获取该用户的相册
+ 
+   请求参数：
+   token:"用户登录时的token，需要放在请求头haeder中传递"
+   {
+     id:'相册id',
+     user_id:'用户id'
+   }
+   响应参数：
+   {
+     code："状态码",
+     msg："状态详情",
+     data:[
+       {
+         id:'相册id',
+         src:'照片地址列表',
+         remark:'备注',
+         title:'标题',
+         user_id:'用户id',
+         create_time:'创建时间',
+         author:'作者名'
+       }
+     ]
+   }
+  ```
+- 删除相册
+  ```javascript
+   地址：'/photo'
+   类型：delete
+   说明： 
+ 
+   请求参数：
+   token:"用户登录时的token，需要放在请求头haeder中传递"
+   {
+     id:'相册id',
+   }
+   响应参数：
+   {
+     code："状态码",
+     msg："状态详情",
+   }
+  ```
