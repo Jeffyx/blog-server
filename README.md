@@ -1,17 +1,20 @@
 # 运行环境
 
 ```javascript
+/*
 NodeJS v8.0+
 npm & cnpm & yarn
 Postgresql 9.5+
 Pm2 //生产环境守护进程
 Nginx & Apache //生产环境代理请求
+*/
 ```
 
 # 启动脚本
 ```javascript
 
 npm i //安装依赖
+//*修改config 下的dbConfig.js 文件连接数据库
 npm run init_db //初始化数据库表
 npm run dev //启动项目
 // 'http://localhost:3000'
@@ -21,7 +24,6 @@ npm run dev //启动项目
 ```javascript
 
 // $ vim /etc/nginx/nginx.conf
-
 /*
   http {
     server {
@@ -568,7 +570,7 @@ npm run dev //启动项目
   }
   ```
 
-### 评论 comment
+### 评论 Comment
 
 - 获取评论内容
 
@@ -657,5 +659,70 @@ npm run dev //启动项目
     msg："状态详情"
   }
   ```
+### 相册 Photo
+- 添加相册
+  ```javascript
+  地址：'/photo'
+  类型：post
+  说明：src为一个数组
 
-  ​
+  请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
+  {
+    src:'用户上传的图片地址集合Array',
+    remark:'相册说明或备注',
+    title:'标题',
+    user_id:'用户id'
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情"
+  }
+  ```
+- 获取相册列表&详情&用户分下的列表
+ ```javascript
+ 地址：'/photo'
+  类型：get
+  说明：id和user_id都为空获取全部相册，只传id获取相册详情，只传user_id获取该用户的相册
+
+  请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
+  {
+    id:'相册id',
+    user_id:'用户id'
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情",
+    data:[
+      {
+        id:'相册id',
+        src:'照片地址列表',
+        remark:'备注',
+        title:'标题',
+        user_id:'用户id',
+        create_time:'创建时间',
+        author:'作者名'
+      }
+    ]
+  }
+ ```
+ - 删除相册
+ ```javascript
+  地址：'/photo'
+  类型：delete
+  说明：
+
+  请求参数：
+  token:"用户登录时的token，需要放在请求头haeder中传递"
+  {
+    id:'相册id',
+  }
+  响应参数：
+  {
+    code："状态码",
+    msg："状态详情",
+  }
+ ```
